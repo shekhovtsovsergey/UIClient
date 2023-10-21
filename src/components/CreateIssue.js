@@ -123,7 +123,11 @@ export default class CreateIssue extends Component {
       });
     } else {
       this.setState(state => {
-        state.issue[field] = value;
+        if (field === "status") {
+          state.issue[field].current = value;
+        } else {
+          state.issue[field] = value;
+        }
         return state;
       });
     }

@@ -117,7 +117,7 @@ export default class IssueList extends Component {
                     <Typography>{issue.description}</Typography>
                   </Grid>
                   <Grid item xs={1}>
-                    <Chip style={styles.chip} label={issue.status} color="primary" />
+                    <Chip style={styles.chip} label={issue.status.current} color="primary" />
                   </Grid>
                 </Grid>
               </ListItem>

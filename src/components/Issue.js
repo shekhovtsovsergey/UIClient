@@ -119,6 +119,7 @@ export default class Issue extends Component {
       .then(res => res.json())
       .then(res => {
         this.setState({issue: res});
+        console.log(res)
         UserService.loadUsers(this.props.keycloak, res.assignee.id, users => this.setState({users: users}))
       });
 
@@ -282,7 +283,7 @@ export default class Issue extends Component {
 
         <Grid container alignItems={'center'} style={styles.statusAssigneeGrid}>
           <Grid item xs={10}>
-            {this.state.issue.status.previous.map(status => (
+            {this.state.issue.status.previous && this.state.issue.status.previous.map(status => (
               <Button variant="outlined" color="secondary" style={styles.statusButton} onClick={() => this.updateStatusReq(status)}>
                 {status}
               </Button>
@@ -290,7 +291,7 @@ export default class Issue extends Component {
 
             <Button variant="contained" color="primary" style={styles.statusButton}>{this.state.issue.status.current}</Button>
 
-            {this.state.issue.status.next.map(status => (
+            {this.state.issue.status.next && this.state.issue.status.next.map(status => (
               <Button variant="outlined" style={styles.nextStatusButton} onClick={() => this.updateStatusReq(status)}>
                 {status}
               </Button>
